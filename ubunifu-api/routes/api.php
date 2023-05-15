@@ -18,10 +18,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/create-menu', 'App\Http\Controllers\MenusController@newMenu');
+Route::post('/create-menu', 'App\Http\Controllers\MenusController@newMenu');
 
-Route::get('/update-menu', 'App\Http\Controllers\MenusController@updateMenu');
+Route::post('/update-menu', 'App\Http\Controllers\MenusController@updateMenu');
 
-Route::get('/delete-menu', 'App\Http\Controllers\MenusController@deleteMenu');
+Route::post('/delete-menu', 'App\Http\Controllers\MenusController@deleteMenu');
 
 Route::get('/fetch-menu', 'App\Http\Controllers\MenusController@fetchMenu');

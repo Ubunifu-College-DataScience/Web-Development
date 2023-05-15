@@ -8,10 +8,10 @@ use App\Models\Menus;
 class MenusController extends Controller
 {
     //
-    public function newMenu(){
+    public function newMenu(Request $request){
         $menus = new Menus();
-        $menus->category = '';
-        $menus->menu_name = '';
+        $menus->category = $request->category;
+        $menus->menu_name = $request->menu_name;
         $menus->save();
         return response()->json(
             [
@@ -30,14 +30,14 @@ class MenusController extends Controller
             return response()->json(
                 [
                     'status'=>200,
-                    'mesponse'=>"Successfully updated!" 
+                    'response'=>"Successfully updated!" 
                 ],200
                 );
         }else{
             return response()->json(
                 [
                     'status'=>500,
-                    'mesponse'=>"Error on update!" 
+                    'response'=>"Error on update!" 
                 ],200
                 );
         }    
@@ -50,35 +50,41 @@ class MenusController extends Controller
             return response()->json(
                 [
                     'status'=>200,
-                    'mesponse'=>"Successfully deleted!" 
+                    'response'=>"Successfully deleted!" 
                 ],200
                 );
         }else{
             return response()->json(
                 [
                     'status'=>404,
-                    'mesponse'=>"Record not found!" 
+                    'response'=>"Record not found!" 
                 ],200
                 );
         } 
     }
 
     public function fetchMenu(){
+
         $menu =  Menus::all();
+
         if($menu ->count() > 0){
+
             return response()->json(
                 [
                     'status'=>200,
                     'menus'=>$menu 
                 ],200
                 );
+
         }else{
+
             return response()->json(
                 [
                     'status'=>400,
                     'menus'=>'Menus not found!'
                 ],200
                 );
+
         }     
     }
 
